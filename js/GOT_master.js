@@ -12,6 +12,7 @@
 	function showLightbox() {
 		//grab right video source
 		// debugger;
+		// animateBanner();
 		//get the lowercase house name from the class list
 		let targetHouse = this.className.split(" ")[1];
 
@@ -33,15 +34,25 @@
 
 	function animateBanner() {
 		//this is width of one img
+
 		const offSet = 600;
 		//total distance we need to move for each shield click on
-		totalOffset = this.dataset.offset * offSet + "px";
+		// let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
+
+		totalOffset = this.dataset.offset * offSet;// + "px";
 		// set the style (css animate for us)
-		banners.style.right =totalOffset;
+		// banners.style.right =totalOffset;
+		TweenMax.to(banners, 0.8, {right: totalOffset});
+		// TweenMax.eventCallback("onComplete", showLightbox());
+		// showLightbox();
 	}
+
+	// banners.addEventListener("onload", showLightbox);
+	
 
 	// shields.forEach(shield => shield.addEventListener("click", showLightbox));
 	shields.forEach(shield => shield.addEventListener("click", animateBanner));
+	// banners.addEventListener("transitionend", showLightbox);
 	
 	
 	video.addEventListener("ended", closeLightbox);
