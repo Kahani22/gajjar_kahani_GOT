@@ -36,25 +36,7 @@ House Greyjoy's sigil is traditionally a golden kraken on a black field. Their h
 `House Frey of the Twins was the Great House of the Riverlands, having gained their position for their treachery against their former liege lords, House Tully, who were stripped of all their lands and titles for their rebellion against the Iron Throne; House Tully had supported the independence movement for the Kingdom of the North. The current head of the house is unknown following the assassinations of Lord Walder Frey and two of his sons, Lothar Frey and Walder Rivers, by the vengeful Arya Stark. This is made more complex by the subsequent assassination of all the male Freys soon after.`
 	];
 
-	function showLightbox() {
-		//grab right video source
-
-		//get the lowercase house name from the class list
-		let targetHouse = this.className.split(" ")[1];
-
-		let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
-
-		let whichOne = this.dataset.offset * 1;
-
-		houseName.textContent = `House ${targetSrc}`; //backticks are JS template
-		houseInfo.textContent = houseData[0 + whichOne]; //this only get the first data for info, we need to figure out how to get the other ones
-
-		video.src = `video/House-${targetSrc}.mp4`;
-
-		lightBox.classList.add("show-lightbox");
-		video.load();
-		video.play();
-	}
+	
 
 	function closeLightbox() {
 		lightBox.classList.remove("show-lightbox");
@@ -68,18 +50,39 @@ House Greyjoy's sigil is traditionally a golden kraken on a black field. Their h
 		const offSet = 600;
 		//total distance we need to move for each shield click on
 		// let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
-
+        
 		totalOffset = this.dataset.offset * offSet;// + "px";
 		// set the style (css animate for us)
 		// banners.style.right =totalOffset;
-		TweenMax.to(banners, 0.8, {right: totalOffset});
-		// TweenMax.eventCallback("onComplete", showLightbox());
+
+		const targetHouse = this.className.split(" ")[1];
+		let whichOne = this.dataset.offset * 1;
+		
+
+		function showLightbox() {
+		//grab right video source
+
+		//get the lowercase house name from the class list
+        let targetSrc = targetHouse.charAt(0).toUpperCase() + targetHouse.slice(1);
+        
+
+		houseName.textContent = `House ${targetSrc}`; //backticks are JS template
+		houseInfo.textContent = houseData[0 + whichOne]; //this only get the first data for info, we need to figure out how to get the other ones
+
+		video.src = `video/House-${targetSrc}.mp4`;
+
+		lightBox.classList.add("show-lightbox");
+		video.load();
+		video.play();
+	}
+	    TweenMax.to(banners, 0.8, {right: totalOffset})
+	    .eventCallback("onComplete", showLightbox);
 		// showLightbox();
 	}
-
+        
 	
-   shields.forEach(shield => shield.addEventListener("click", showLightbox));
-	// shields.forEach(shield => shield.addEventListener("click", animateBanner));
+   // shields.forEach(shield => shield.addEventListener("click", showLightbox));
+	shields.forEach(shield => shield.addEventListener("click", animateBanner));
 	
 	
 	video.addEventListener("ended", closeLightbox);
