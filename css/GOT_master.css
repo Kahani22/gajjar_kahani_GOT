@@ -36,7 +36,7 @@ main {
 	overflow:hidden;
 }
 
-#houseImages { position:relative; width:4000px; /transition: all .5s;/ }
+#houseImages { position:relative; width:4000px; }
 #houseImages img { float:left; }
 
 #bottomNav { margin-top:30px; }
@@ -108,7 +108,17 @@ main {
 }
 
 .show-lightbox {
+	-webkit-animation: slow-in 2s;
 	display: block;
+}
+
+@-webkit-keyframes slow-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .lightbox-close {
@@ -118,13 +128,15 @@ main {
 	top: 110px;
 	cursor: pointer;
 	font-size: 2em;
+	
+
 }
 
 .house-name {
 	font-size: 2rem;
 	letter-spacing: 1px;
 	margin-top: 60px;
-}
+    }
 
 .house-info {
 	color: white;
@@ -140,4 +152,8 @@ video {
 	width: 80%;
 	margin-top: 10%;
 	border: thin solid #949393;
+}
+
+.hidden {
+	display: none;
 }
