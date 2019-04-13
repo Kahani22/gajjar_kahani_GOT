@@ -77,6 +77,10 @@ House Greyjoy's sigil is traditionally a golden kraken on a black field. Their h
 	}
 	    TweenMax.to(banners, 0.8, {right: totalOffset})
 	    .eventCallback("onComplete", showLightbox);
+        
+        TweenMax.to(".house-name", 2, {x:500, ease:Bounce.easeOut});
+
+
 		// showLightbox();
 	}
         
@@ -88,5 +92,6 @@ House Greyjoy's sigil is traditionally a golden kraken on a black field. Their h
 	video.addEventListener("ended", closeLightbox);
 	exit.addEventListener("click", closeLightbox);
 
+  
 
 })();   
